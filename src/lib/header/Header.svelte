@@ -5,8 +5,8 @@
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+		<a href="https://ihtfy.com">
+			<img src={logo} alt="IHFY" />
 		</a>
 	</div>
 
@@ -29,7 +29,9 @@
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<a href="https://github.com/IHTFY/calendar">
+			<img src={logo} alt="github source" />
+		</a>
 	</div>
 </header>
 
