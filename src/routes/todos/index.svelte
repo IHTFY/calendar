@@ -132,6 +132,7 @@
 	}
 
 	.new input {
+		color: var(--heading-color);
 		font-size: 28px;
 		width: 100%;
 		padding: 0.5em 1em 0.3em 1em;
