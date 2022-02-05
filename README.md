@@ -1,3 +1,5 @@
+Static Site is in /docs as shown in https://github.com/Glench/sveltekit-github-pages-template.
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
