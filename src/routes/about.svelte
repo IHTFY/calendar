@@ -12,6 +12,34 @@
 	// since there's no dynamic data here, we can prerender
 	// it so that it gets served as a static asset in prod
 	export const prerender = true;
+
+	// filepond
+
+	import FilePond, { registerPlugin, supported } from 'svelte-filepond';
+
+	// Import the Image EXIF Orientation and Image Preview plugins
+	// Note: These need to be installed separately
+	// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+	import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+	import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+	// Register the plugins
+	registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
+	// a reference to the component, used to call FilePond methods
+	let pond;
+
+	// the name to use for the internal file input
+	let filename = 'filepond';
+
+	// handle filepond events
+	function handleInit() {
+		console.log('FilePond has initialised');
+	}
+
+	function handleAddFile(err, fileItem) {
+		console.log('A file has been added', fileItem);
+	}
 </script>
 
 <svelte:head>
@@ -19,6 +47,16 @@
 </svelte:head>
 
 <div class="content">
+	<FilePond
+		bind:this={pond}
+		name={filename}
+		oninit={handleInit}
+		onaddfile={handleAddFile}
+		allowMultiple={true}
+	/>
+
+	<button on:click={() => console.log(pond.getFiles())}>Files</button>
+
 	<h1>About this app</h1>
 
 	<p>
