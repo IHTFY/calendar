@@ -1,12 +1,13 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+	import logo from './ihtfy-logo.svg';
+	import gh from './gh-logo.svg';
 </script>
 
 <header>
 	<div class="corner">
 		<a href="https://ihtfy.com">
-			<img src={logo} alt="IHFY" />
+			<img src={logo} alt="IHTFY" />
 		</a>
 	</div>
 
@@ -15,12 +16,12 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
+			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Editor</a></li>
+			<li class:active={$page.url.pathname === '/data'}>
+				<a sveltekit:prefetch href="/data">Data</a>
 			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a sveltekit:prefetch href="/todos">Todos</a>
+			<li class:active={$page.url.pathname === '/settings'}>
+				<a sveltekit:prefetch href="/settings">settings</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -30,7 +31,7 @@
 
 	<div class="corner">
 		<a href="https://github.com/IHTFY/calendar">
-			<img src={logo} alt="github source" />
+			<img src={gh} alt="github" />
 		</a>
 	</div>
 </header>

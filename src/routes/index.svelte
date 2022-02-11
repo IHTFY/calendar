@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Editor</title>
 </svelte:head>
 
 <section>
