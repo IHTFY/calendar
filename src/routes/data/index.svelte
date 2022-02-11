@@ -24,7 +24,10 @@
 		let file = files.accepted[0];
 		const reader = new FileReader();
 		reader.onload = event => {
-			console.log(event.target.result);
+			database.update(db => {
+				db[0].image = event.target.result;
+				return db;
+			});
 		};
 		reader.readAsDataURL(file);
 	}
