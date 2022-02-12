@@ -1,38 +1,12 @@
 <script context="module">
 	import { browser } from '$app/env';
-	import Dropzone from 'svelte-file-dropzone';
-	// import Crud from '$lib/Crud.svelte';
-	import Event from '$lib/event/Event.svelte';
 	import holidaysForYear from '$lib/holidays';
 	import { database } from '$lib/stores.js';
+	import EventEditor from '$lib/events/EventEditor.svelte';
+	import EventTable from '$lib/events/EventTable.svelte';
 
 	export const router = browser;
 
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
-	export const prerender = false;
-
-	let files = {
-		accepted: [],
-		rejected: [],
-	};
-
-	function handleFilesSelect(e) {
-		const { acceptedFiles, fileRejections } = e.detail;
-		files.accepted = [...files.accepted, ...acceptedFiles];
-		files.rejected = [...files.rejected, ...fileRejections];
-		let file = files.accepted[0];
-		const reader = new FileReader();
-		reader.onload = event => {
-			database.update(db => {
-				db[0].image = event.target.result;
-				return db;
-			});
-		};
-		reader.readAsDataURL(file);
-	}
-
-	let columns = ['Date', 'Type', 'Name', 'Image'];
 	let usHolidays = holidaysForYear;
 	let birthdays = [
 		{
@@ -85,6 +59,10 @@
 		const bDate = b.date.replace(/^(\d{4})/, '2022');
 		return new Date(aDate) - new Date(bDate);
 	});
+
+	function loadEvent(event) {
+		preload = event;
+	}
 </script>
 
 <svelte:head>
@@ -92,33 +70,11 @@
 </svelte:head>
 
 <div class="content">
-	<h1>Data</h1>
-	<p>Upload Images</p>
-
-	<button on:click={() => console.log(files)}>Print</button>
-
-	<Dropzone on:drop={handleFilesSelect} />
-	<ol>
-		{#each files.accepted as item}
-			<li>{item.name}</li>
-		{/each}
-	</ol>
+	<h1>Event Editor</h1>
+	<EventEditor />
 
 	<h1>Holidays</h1>
-
-	<!-- a table of holidays and birthdays -->
-	<table>
-		<thead>
-			{#each columns as column}
-				<th>{column}</th>
-			{/each}
-		</thead>
-		<tbody>
-			{#each $database as event}
-				<Event {...event} />
-			{/each}
-		</tbody>
-	</table>
+	<EventTable entries={$database} on:message={loadEvent} />
 </div>
 
 <style>
@@ -126,13 +82,5 @@
 		width: 100%;
 		max-width: var(--column-width);
 		margin: var(--column-margin-top) auto 0 auto;
-	}
-
-	table {
-		overflow: hidden;
-		border-collapse: collapse;
-		border-spacing: 0;
-		font-size: 1.2rem;
-		color: var(--pure-white);
 	}
 </style>
