@@ -26,6 +26,7 @@
     "@lukeed/uuid": "^2.0.0",
     "cookie": "^0.4.1",
     "date-holidays": "^3.14.2",
+    "dexie": "^3.2.0",
     "svelte-file-dropzone": "^1.0.0-dev.1"
   }
 }
