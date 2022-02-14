@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="Calendar Maker" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>Data</title>
+	<link rel="stylesheet" href="/_app/assets/vendor-ff184c56.css">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-2da0606b.css">
+	<link rel="stylesheet" href="/_app/assets/pages/data.svelte-17bc82c8.css">
+	<link rel="modulepreload" href="/_app/start-c8e25afe.js">
+	<link rel="modulepreload" href="/_app/chunks/vendor-a0c15b38.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-87aafbd1.js">
+	<link rel="modulepreload" href="/_app/pages/data.svelte-6d467435.js">
+	</head>
+	<body>
+		<div>
+
+
+<header class="svelte-1vdbi9x"><div class="corner svelte-1vdbi9x"><a href="https://ihtfy.com" class="svelte-1vdbi9x"><img src="/_app/assets/ihtfy-logo-a15c639f.svg" alt="IHTFY" class="svelte-1vdbi9x"></a></div>
+
+	<nav class="svelte-1vdbi9x"><svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-1vdbi9x"><path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="svelte-1vdbi9x"></path></svg>
+		<ul class="svelte-1vdbi9x"><li class="svelte-1vdbi9x"><a sveltekit:prefetch href="/" class="svelte-1vdbi9x">Preview</a></li>
+			<li class="svelte-1vdbi9x active"><a sveltekit:prefetch href="/data" class="svelte-1vdbi9x">Data</a></li>
+			<li class="svelte-1vdbi9x"><a sveltekit:prefetch href="/settings" class="svelte-1vdbi9x">settings</a></li></ul>
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-1vdbi9x"><path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="svelte-1vdbi9x"></path></svg></nav>
+
+	<div class="corner svelte-1vdbi9x"><a href="https://github.com/IHTFY/calendar" class="svelte-1vdbi9x"><img src="/_app/assets/gh-logo-915cd3df.svg" alt="github" class="svelte-1vdbi9x"></a></div>
+</header>
+
+<main class="svelte-bw9qss">
+
+<div class="content svelte-cf77e8"><h1>Event Editor</h1>
+	<div><form class="svelte-18y0otl"><div class="text-input svelte-18y0otl">
+			<button type="button">New Event</button>
+			<input id="event-date" type="date" name="date" value="YYYY-MM-DD" class="svelte-18y0otl">
+			<input id="event-type" type="text" list="types" value="" class="svelte-18y0otl">
+			<input id="event-name" type="text" name="name" placeholder="Name" class="svelte-18y0otl">
+			<datalist id="types"><option value="">Type</option><option value="Holiday">Holiday</option><option value="Birthday">Birthday</option><option value="Anniversary">Anniversary</option></datalist>
+			<button type="button">Save</button></div>
+		<div class="image-input svelte-18y0otl" style="background-image: url(undefined);"><div tabindex="0" class="dropzone  svelte-817dg2" style=";\n        padding: 0;\n        height: 196px;\n        width: 196px;\n        background-color:var(--background-color);\n        "><input accept="image/*"  type="file" autocomplete="off" tabindex="-1" style="display: none;">
+  
+    <p>Drag &#39;n&#39; drop some files here, or click to select files</p>
+  
+</div></div></form>
+</div>
+
+	<h1>Holidays</h1>
+	
+<table class="svelte-1w5bhrs"><thead><th>Date</th><th>Type</th><th>Name</th><th>Image</th></thead>
+	<tbody></tbody>
+</table>
+</div></main>
+
+<footer class="svelte-bw9qss"><p>Made by <a href="https://ihtfy.com" class="svelte-bw9qss">Frankie</a></p>
+</footer>
+
+
+		<script type="module" data-hydrate="1jlz8sn">
+		import { start } from "/_app/start-c8e25afe.js";
+		start({
+			target: document.querySelector('[data-hydrate="1jlz8sn"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-87aafbd1.js"),
+						import("/_app/pages/data.svelte-6d467435.js")
+				],
+				url: new URL("http://sveltekit-prerender/data"),
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>

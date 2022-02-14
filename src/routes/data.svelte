@@ -1,9 +1,10 @@
-<script context="module">
+<script>
 	import { browser, dev } from '$app/env';
 	import holidaysForYear from '$lib/holidays';
 	import { database } from '$lib/stores.js';
 	import EventEditor from '$lib/events/EventEditor.svelte';
 	import EventTable from '$lib/events/EventTable.svelte';
+	import { onMount } from 'svelte';
 
 	export const hydrate = dev;
 	export const router = browser;
@@ -50,19 +51,21 @@
 		},
 	];
 
-	let events = [...usHolidays, ...birthdays, ...anniversaries].map(event => ({
-		...event,
-		id: window.crypto.randomUUID(),
-	}));
+	onMount(() => {
+		let events = [...usHolidays, ...birthdays, ...anniversaries].map(event => ({
+			...event,
+			id: window.crypto.randomUUID(),
+		}));
 
-	// compare in 2022 which is a leap year
-	events.sort((a, b) => {
-		const aDate = a.date.replace(/^(\d{4})/, '2022');
-		const bDate = b.date.replace(/^(\d{4})/, '2022');
-		return new Date(aDate) - new Date(bDate);
+		// compare in 2022 which is a leap year
+		events.sort((a, b) => {
+			const aDate = a.date.replace(/^(\d{4})/, '2022');
+			const bDate = b.date.replace(/^(\d{4})/, '2022');
+			return new Date(aDate) - new Date(bDate);
+		});
+
+		database.set(events);
 	});
-
-	database.set(events);
 </script>
 
 <svelte:head>
