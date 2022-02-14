@@ -1,6 +1,7 @@
 <script>
 	import { currentEvent } from '$lib/stores.js';
 
+	export let id;
 	export let date;
 	export let type;
 	export let name;
@@ -10,6 +11,7 @@
 <tr
 	on:click={() =>
 		currentEvent.set({
+			id: id,
 			date: date,
 			type: type,
 			name: name,

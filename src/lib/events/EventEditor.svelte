@@ -3,27 +3,30 @@
 	import { database } from '$lib/stores.js';
 	import { currentEvent } from '$lib/stores.js';
 
-	let currentImage = null;
+	$: currentImage = $currentEvent.image;
 
 	function handleFilesSelect(e) {
 		const file = e.detail.acceptedFiles[0];
 		const reader = new FileReader();
 		reader.onload = e => {
 			currentImage = e.target.result;
-			database.update(db => {
-				db[Math.floor(Math.random() * 10)].image = e.target.result;
-				return db;
-			});
 		};
 		reader.readAsDataURL(file);
 	}
 
 	const saveEventChanges = () => {
 		currentEvent.set({
-			date: document.getElementById('event-date').value,
+			id: $currentEvent.id,
+			date: document.getElementById('event-date').value + ' 00:00:00',
 			type: document.getElementById('event-type').value,
 			name: document.getElementById('event-name').value,
 			image: currentImage,
+		});
+
+		database.update(db => {
+			const index = $database.findIndex(db => db.id === $currentEvent.id);
+			db[index] = $currentEvent;
+			return db;
 		});
 	};
 </script>
@@ -54,7 +57,7 @@
 			</datalist>
 			<button type="button" on:click={saveEventChanges}>Save</button>
 		</div>
-		<div class="image-input" style="background-image: url({currentImage || $currentEvent.image});">
+		<div class="image-input" style="background-image: url({currentImage});">
 			<Dropzone
 				accept="image/*"
 				multiple={false}
