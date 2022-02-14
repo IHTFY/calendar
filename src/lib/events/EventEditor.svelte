@@ -3,6 +3,8 @@
 	import { database } from '$lib/stores.js';
 	import { currentEvent } from '$lib/stores.js';
 	import { onMount } from 'svelte';
+	import { liveQuery } from 'dexie';
+	import { db } from '$lib/db';
 
 	$: currentImage = $currentEvent.image;
 
@@ -17,7 +19,7 @@
 
 	let createNewEvent;
 	onMount(() => {
-	createNewEvent = () => {
+		createNewEvent = () => {
 			currentEvent.set({
 				id: window.crypto.randomUUID(),
 				date: new Date().toISOString(),
@@ -31,23 +33,25 @@
 	const saveEventChanges = () => {
 		currentEvent.set({
 			id: $currentEvent.id,
-			date: document.getElementById('event-date').value + ' 00:00:00',
+			date: document.getElementById('event-date').value + ' 00:00:00.000',
 			type: document.getElementById('event-type').value,
 			name: document.getElementById('event-name').value,
 			image: currentImage,
 		});
 
-		const index = $database.findIndex(db => db.id === $currentEvent.id);
+		const index = $database.findIndex(event => event.id === $currentEvent.id);
 
-		database.update(db => {
-			index > -1 ? (db[index] = $currentEvent) : db.push($currentEvent);
-			db.sort((a, b) => {
+		database.update(data => {
+			index > -1 ? (data[index] = $currentEvent) : data.push($currentEvent);
+			data.sort((a, b) => {
 				const aDate = a.date.replace(/^(\d{4})/, '2022');
 				const bDate = b.date.replace(/^(\d{4})/, '2022');
 				return new Date(aDate) - new Date(bDate);
 			});
-			return db;
+			return data;
 		});
+
+		db.events.put($currentEvent);
 	};
 </script>
 
