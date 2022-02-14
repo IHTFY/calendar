@@ -2,6 +2,7 @@
 	import Dropzone from 'svelte-file-dropzone';
 	import { database } from '$lib/stores.js';
 	import { currentEvent } from '$lib/stores.js';
+	import { onMount } from 'svelte';
 
 	$: currentImage = $currentEvent.image;
 
@@ -14,6 +15,19 @@
 		reader.readAsDataURL(file);
 	}
 
+	let createNewEvent;
+	onMount(() => {
+	createNewEvent = () => {
+			currentEvent.set({
+				id: window.crypto.randomUUID(),
+				date: new Date().toISOString(),
+				type: '',
+				name: '',
+				image: 'https://picsum.photos/100/100',
+			});
+		};
+	});
+
 	const saveEventChanges = () => {
 		currentEvent.set({
 			id: $currentEvent.id,
@@ -23,9 +37,15 @@
 			image: currentImage,
 		});
 
+		const index = $database.findIndex(db => db.id === $currentEvent.id);
+
 		database.update(db => {
-			const index = $database.findIndex(db => db.id === $currentEvent.id);
-			db[index] = $currentEvent;
+			index > -1 ? (db[index] = $currentEvent) : db.push($currentEvent);
+			db.sort((a, b) => {
+				const aDate = a.date.replace(/^(\d{4})/, '2022');
+				const bDate = b.date.replace(/^(\d{4})/, '2022');
+				return new Date(aDate) - new Date(bDate);
+			});
 			return db;
 		});
 	};
@@ -35,6 +55,7 @@
 	<form>
 		<div class="text-input">
 			<!-- TODO handle dates better -->
+			<button type="button" on:click={createNewEvent}>New Event</button>
 			<input
 				id="event-date"
 				type="date"

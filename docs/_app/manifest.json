@@ -1,10 +1,10 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-1c351106.js",
+    "file": "start-c8e25afe.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ],
     "dynamicImports": [
       "src/routes/__layout.svelte",
@@ -15,12 +15,12 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-6e383fe9.js",
+    "file": "pages/__layout.svelte-87aafbd1.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ],
     "css": [
       "assets/pages/__layout.svelte-2da0606b.css"
@@ -38,52 +38,52 @@
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
-    "file": "error.svelte-6402c2f4.js",
+    "file": "error.svelte-ecb1b601.js",
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-8b7ba9b3.js",
+    "file": "pages/index.svelte-99e62869.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ],
     "css": [
       "assets/pages/index.svelte-14bd8623.css"
     ]
   },
   "src/routes/settings.svelte": {
-    "file": "pages/settings.svelte-3f83bd80.js",
+    "file": "pages/settings.svelte-daae1557.js",
     "src": "src/routes/settings.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ],
     "css": [
       "assets/pages/settings.svelte-53239aeb.css"
     ]
   },
   "src/routes/data.svelte": {
-    "file": "pages/data.svelte-f3e6dfac.js",
+    "file": "pages/data.svelte-6d467435.js",
     "src": "src/routes/data.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-40ff77f4.js"
+      "_vendor-a0c15b38.js"
     ],
     "css": [
-      "assets/pages/data.svelte-ab164ed3.css"
+      "assets/pages/data.svelte-17bc82c8.css"
     ]
   },
-  "_vendor-40ff77f4.js": {
-    "file": "chunks/vendor-40ff77f4.js",
+  "_vendor-a0c15b38.js": {
+    "file": "chunks/vendor-a0c15b38.js",
     "css": [
       "assets/vendor-ff184c56.css"
     ]

@@ -15,4 +15,9 @@
 		"src/**/*.js",
 		"src/**/*.svelte"
 	],
+	"typeAcquisition": {
+		"exclude": [
+			"dotenv"
+		]
+	}
 }
