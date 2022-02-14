@@ -1,10 +1,11 @@
 <script context="module">
-	import { browser } from '$app/env';
+	import { browser, dev } from '$app/env';
 	import holidaysForYear from '$lib/holidays';
 	import { database } from '$lib/stores.js';
 	import EventEditor from '$lib/events/EventEditor.svelte';
 	import EventTable from '$lib/events/EventTable.svelte';
 
+	export const hydrate = dev;
 	export const router = browser;
 
 	let usHolidays = holidaysForYear;
@@ -49,7 +50,10 @@
 		},
 	];
 
-	let events = [...usHolidays, ...birthdays, ...anniversaries];
+	let events = [...usHolidays, ...birthdays, ...anniversaries].map(event => ({
+		...event,
+		id: window.crypto.randomUUID(),
+	}));
 
 	database.set(events);
 
@@ -59,10 +63,6 @@
 		const bDate = b.date.replace(/^(\d{4})/, '2022');
 		return new Date(aDate) - new Date(bDate);
 	});
-
-	function loadEvent(event) {
-		preload = event;
-	}
 </script>
 
 <svelte:head>
@@ -74,7 +74,7 @@
 	<EventEditor />
 
 	<h1>Holidays</h1>
-	<EventTable entries={$database} on:message={loadEvent} />
+	<EventTable entries={$database} />
 </div>
 
 <style>
