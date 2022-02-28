@@ -58,10 +58,10 @@
 			id: window.crypto.randomUUID(),
 		}));
 
-		// compare in 2022 which is a leap year
+		// compare in 2020 which is a leap year
 		events.sort((a, b) => {
-			const aDate = a.date.replace(/^(\d{4})/, '2022');
-			const bDate = b.date.replace(/^(\d{4})/, '2022');
+			const aDate = a.date.replace(/^(\d{4})/, '2020');
+			const bDate = b.date.replace(/^(\d{4})/, '2020');
 			return new Date(aDate) - new Date(bDate);
 		});
 
